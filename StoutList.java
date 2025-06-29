@@ -179,10 +179,8 @@ public class StoutList<E extends Comparable<? super E>> extends AbstractSequenti
 	  int i = 0;
 	  while (iter.hasNext()) {
 		  arr[i] = iter.next();
-		  System.out.print(arr[i] + ":" + i + " ");
 		  i += 1;
 	  }
-	  System.out.println();
 	  head.next = tail;
 	  tail.previous = head;
 	  size = 0;
@@ -210,6 +208,20 @@ public class StoutList<E extends Comparable<? super E>> extends AbstractSequenti
   public void sortReverse() 
   {
 	  // TODO 
+	  E[] arr = (E[]) new Comparable[size];
+	  StoutListIterator iter = new StoutListIterator();
+	  int i = 0;
+	  while (iter.hasNext()) {
+		  arr[i] = iter.next();
+		  i += 1;
+	  }
+	  head.next = tail;
+	  tail.previous = head;
+	  size = 0;
+	  bubbleSort(arr);
+	  for (i = 0; i < arr.length; i++) {
+		  add(arr[i]);
+	  }
   }
   
   @Override
@@ -697,6 +709,18 @@ public class StoutList<E extends Comparable<? super E>> extends AbstractSequenti
   private void bubbleSort(E[] arr)
   {
 	  // TODO
+	  boolean swapped = true;
+	  while (swapped) {
+		  swapped = false;
+		  for (int i = 1; i < arr.length; i++) {
+			  if (arr[i].compareTo(arr[i - 1]) > 0) {
+				  E temp = arr[i - 1];
+				  arr[i - 1] = arr[i];
+				  arr[i] = temp;
+				  swapped = true;
+			  }
+		  }
+	  }
   }
  
 
